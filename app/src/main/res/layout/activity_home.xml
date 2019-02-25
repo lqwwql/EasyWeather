@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_bg"
+    tools:context="com.main.easyweather.HomeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/et_search"
+                android:paddingLeft="15dp"
+                android:layout_margin="5dp"
+                android:textSize="20sp"
+                android:textCursorDrawable="@null"
+                android:textColor="@color/color_et_textcolor"
+                android:background="@drawable/et_shape"
+                android:hint="请输入城市 例: 广州"
+                android:textColorHint="@color/color_et_textcolor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <Spinner
+                android:id="@+id/sp_province"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/colorETBG"
+                android:spinnerMode="dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"></Spinner>
+
+            <Spinner
+                android:id="@+id/sp_city"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/colorETBG"
+                android:spinnerMode="dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"></Spinner>
+
+            <Button
+                android:id="@+id/btn_check"
+                android:text="查询"
+                android:background="@drawable/check_selector"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textSize="20sp"
+                android:textColor="@color/color_et_textcolor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <LinearLayout
+                android:id="@+id/city_weather"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:background="@color/colorETBG"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_cityname"
+                    android:text="城市名"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="25sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_cityterm"
+                    android:text="25℃"
+                    android:textColor="#ffffff"
+                    android:textSize="60sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_citytermrange"
+                    android:text="29℃/22℃"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_citywinrating"
+                    android:text="风向/风力:5级"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_cityair"
+                    android:text="空气质量:优"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/tv_city_ultravioletrays"
+                    android:text="紫外线指数：弱，辐射较弱，涂擦SPF12-15、PA+护肤品"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="13sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_city_getcold"
+                    android:layout_marginLeft="5dp"
+                    android:text="感冒指数：较易发，天凉，湿度大，较易感冒"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="13sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_city_dressing"
+                    android:layout_marginLeft="5dp"
+                    android:text="穿衣指数：热，适合穿T恤、短薄外套等夏季服装"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="13sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_city_carwash"
+                    android:layout_marginLeft="5dp"
+                    android:text="洗车指数：较适宜，无雨且风力较小，易保持清洁度"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="13sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_city_exercise"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="运动指数：较适宜，风力稍强，推荐您进行室内运动"
+                    android:textColor="@color/color_et_textcolor"
+                    android:textSize="13sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical"
+                    android:showDividers="middle"
+                    android:divider="@drawable/divider_shape"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:id="@+id/aftertoday1"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="4月17日 晴"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/aftertoday1termrange"
+                            android:text="29℃/22℃"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="35dp"
+                            android:layout_toLeftOf="@id/aftertoday1termrange"
+                            android:background="@mipmap/ic_launcher"
+                            android:id="@+id/aftertoday1icon1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/aftertoday1termrange"
+                            android:layout_marginRight="13dp"
+                            android:background="@drawable/icon"
+                            android:id="@+id/aftertoday1icon2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:id="@+id/aftertoday2"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="4月17日 多云转阴"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/aftertoday2termrange"
+                            android:text="29℃/22℃"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="35dp"
+                            android:layout_toLeftOf="@id/aftertoday2termrange"
+                            android:background="@mipmap/ic_launcher"
+                            android:id="@+id/aftertoday2icon1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/aftertoday2termrange"
+                            android:layout_marginRight="13dp"
+                            android:background="@drawable/icon"
+                            android:id="@+id/aftertoday2icon2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:id="@+id/aftertoday3"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="4月17日 多云转阴"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/aftertoday3termrange"
+                            android:text="29℃/22℃"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="35dp"
+                            android:layout_toLeftOf="@id/aftertoday3termrange"
+                            android:background="@mipmap/ic_launcher"
+                            android:id="@+id/aftertoday3icon1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/aftertoday3termrange"
+                            android:layout_marginRight="13dp"
+                            android:background="@drawable/icon"
+                            android:id="@+id/aftertoday3icon2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:id="@+id/aftertoday4"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="4月17日 多云转阴"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/aftertoday4termrange"
+                            android:text="29℃/22℃"
+                            android:textColor="@color/color_et_textcolor"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="35dp"
+                            android:layout_toLeftOf="@id/aftertoday4termrange"
+                            android:background="@mipmap/ic_launcher"
+                            android:id="@+id/aftertoday4icon1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/aftertoday4termrange"
+                            android:layout_marginRight="13dp"
+                            android:background="@drawable/icon"
+                            android:id="@+id/aftertoday4icon2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

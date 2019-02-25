@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- name 是Style的名称，parent 继承那个父类样式 -->
+    <style name="theme_fullScream" parent="android:Theme.Black">
+        <item name="android:windowNoTitle">true</item><!-- 设置无标题 -->
+        <item name="android:windowFullscreen">?android:windowNoTitle</item><!--取决于android:windowNoTitle的值-->
+        <item name="android:background">#ffffff</item>
+    </style>
+</resources>
