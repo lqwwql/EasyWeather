@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/color_bg"
-    tools:context="com.main.easyweather.HomeActivity">
+    tools:context="com.main.easyweather.view.HomeActivity">
 
     <ScrollView
         android:layout_width="match_parent"
