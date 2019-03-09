@@ -63,7 +63,8 @@ public class WeatherListViewAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 4;
+        //设置的数值要比实际的大，不然报数组越界。
+        return 5;
     }
 
     @Override
@@ -123,6 +124,7 @@ public class WeatherListViewAdapter extends BaseAdapter {
                 try{
                     List<WeatherDayBean> weatherDayBeanList = weatherBean.getWeatherDayBeanList();
                     LinearLayout total = new LinearLayout(context);
+                    total.setOrientation(LinearLayout.VERTICAL);
                     if (weatherDayBeanList == null) {
                         Log.i("weather", "weatherDayBeanList = null");
                         break;

@@ -61,9 +61,6 @@ public class GlideUtils {
     public void setImageCacheResource(int drawable, Context context, ImageView imageView){
         Glide.with(context)
                 .load(drawable)//可以是网络url，本地图片，应用资源，二进制流，uri对象等
-                //.asGif()//制定加载动态图片，非动态则显示error
-                //.asBitmap()//指定加载静态图片，gif图只显示第一帧
-                .override(80,110)//指定加载图片的大小，不管imageview的大小
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)//使用缓存原始图片功能
                 .into(imageView);//要显示的imageview对象
     }

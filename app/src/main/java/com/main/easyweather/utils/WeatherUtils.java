@@ -33,7 +33,8 @@ public class WeatherUtils {
 
     private Context context;
 
-    private WeatherUtils() {}
+    private WeatherUtils() {
+    }
 
     private static class LazyLoader {
         public static WeatherUtils WEATHER_UTILS = new WeatherUtils();
@@ -43,7 +44,7 @@ public class WeatherUtils {
         return LazyLoader.WEATHER_UTILS;
     }
 
-    public List<WeatherBean> getWeatherBean(String cityName) throws Exception{
+    public List<WeatherBean> getWeatherBean(String cityName) throws Exception {
         final List<WeatherBean> weatherBeanList = new ArrayList<>();
         final WeatherBean detailWeatherBean = new WeatherBean();
         final WeatherBean hourWeatherBean = new WeatherBean();
@@ -85,7 +86,7 @@ public class WeatherUtils {
                     Log.i("weather", "getWeatherHourly: " + new Gson().toJson(list));
                     List<WeatherHourBean> weatherHourBeanList = new ArrayList<>();
                     List<HourlyBase> hourlyBaseList = list.get(0).getHourly();
-                    for(HourlyBase hourlyBase : hourlyBaseList){
+                    for (HourlyBase hourlyBase : hourlyBaseList) {
                         WeatherHourBean weatherHourBean = new WeatherHourBean();
                         weatherHourBean.setHour(hourlyBase.getTime());
                         weatherHourBean.setImage(hourlyBase.getCond_code());
@@ -111,8 +112,8 @@ public class WeatherUtils {
                     Log.i("weather", "getWeatherForecast: " + new Gson().toJson(list));
                     List<WeatherDayBean> weatherDayBeanList = new ArrayList<>();
                     List<ForecastBase> forecastBaseList = list.get(0).getDaily_forecast();
-                    Log.i("weather","forecast size = "+forecastBaseList.size());
-                    for(ForecastBase forecastBase : forecastBaseList){
+                    Log.i("weather", "forecast size = " + forecastBaseList.size());
+                    for (ForecastBase forecastBase : forecastBaseList) {
                         WeatherDayBean weatherDayBean = new WeatherDayBean();
                         weatherDayBean.setDay(forecastBase.getDate());
                         weatherDayBean.setImage(forecastBase.getCond_code_d());
@@ -137,8 +138,8 @@ public class WeatherUtils {
                 if (list != null && list.size() > 0) {
                     Log.i("weather", "getWeatherLifeStyle: " + new Gson().toJson(list));
                     WeatherTipBean weatherTipBean = new WeatherTipBean();
-                    LifestyleBase lifestyleBase = list.get(0).getLifestyle().get(0);
-                    weatherTipBean.setTip(lifestyleBase.getTxt());
+                    List<LifestyleBase> lifestyleBaseList = list.get(0).getLifestyle();
+                    weatherTipBean.setTip(getLifeStyle(lifestyleBaseList));
                     tipWeatherBean.setWeatherTipBean(weatherTipBean);
                     tipWeatherBean.setType(4);
                 }
@@ -153,6 +154,48 @@ public class WeatherUtils {
         weatherBeanList.add(tipWeatherBean);
 
         return weatherBeanList;
+    }
+
+    private String getLifeStyle(List<LifestyleBase> lifestyleBaseList){
+        String comf = "舒适度指数:";//舒适度指数
+        String cw = "洗车指数:";//洗车指数
+        String drsg = "穿衣指数:";//穿衣指数
+        String flu = "感冒指数:";//感冒指数
+        String sport = "运动指数:";//运动指数
+        String trav = "旅游指数:";//旅游指数
+        String uv = "紫外线指数:";//紫外线指数
+        String air = "空气污染扩散条件指数:";//空气污染扩散条件指数
+        for(LifestyleBase lifestyleBase : lifestyleBaseList){
+            switch (lifestyleBase.getType()){
+                case "comf":
+                    comf += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                case "cw":
+                    cw += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                case "drsg":
+                    drsg += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                case "flu":
+                    flu += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                case "sport":
+                    sport += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                case "trav":
+                    trav += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                case "uv":
+                    uv += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                case "air":
+                    air += lifestyleBase.getTxt()+"\n\n";
+                    break;
+                default:
+                    break;
+            }
+        }
+        return comf+cw+drsg+flu+sport+trav+uv+air;
     }
 
     public Context getContext() {
