@@ -11,6 +11,15 @@ public class WeatherDetailBean {
     private String condTxt;
     private String windDir;
     private String windSc;
+    private String air;
+
+    public String getAir() {
+        return air;
+    }
+
+    public void setAir(String air) {
+        this.air = air;
+    }
 
     public String getTemp() {
         return temp;

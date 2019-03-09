@@ -92,7 +92,7 @@ public class WeatherListViewAdapter extends BaseAdapter {
                     curWeatherViewHolder.tv_cur_temp.setText(weatherDetailBean.getTemp() + "℃");
                     curWeatherViewHolder.tv_weather.setText(weatherDetailBean.getCondTxt());
                     curWeatherViewHolder.tv_temp_range.setText(weatherDetailBean.getWindDir() + "/" + weatherDetailBean.getWindSc()+"级");
-//                curWeatherViewHolder.tv_air.setText();
+                    curWeatherViewHolder.tv_air.setText("空气质量:"+weatherDetailBean.getAir());
                     break;
                 }catch(Exception e){
                     Log.i("weather","type 1 error : ",e);
