@@ -3,13 +3,14 @@ package com.main.easyweather.models;
 import org.litepal.crud.DataSupport;
 
 /**
- * Created by Administrator on 2019/3/8.
+ * Created by Administrator on 2019/3/10.
  */
 
-public class City extends DataSupport {
-    private int iCode;        //城市代码
-    private int iProvCode;    //省份代码
-    private String sName;   //城市名
+public class County extends DataSupport {
+
+    private int iCode;        //县级代码
+    private int iCity;    //市级代码
+    private String sName;     //县区名
 
     public int getiCode() {
         return iCode;
@@ -19,12 +20,12 @@ public class City extends DataSupport {
         this.iCode = iCode;
     }
 
-    public int getiProvCode() {
-        return iProvCode;
+    public int getiCity() {
+        return iCity;
     }
 
-    public void setiProvCode(int iProvCode) {
-        this.iProvCode = iProvCode;
+    public void setiCity(int iCity) {
+        this.iCity = iCity;
     }
 
     public String getsName() {

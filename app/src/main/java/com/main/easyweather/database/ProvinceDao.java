@@ -12,8 +12,16 @@ import java.util.List;
 
 public class ProvinceDao {
 
-    public static List<Province> getAllProvince(){
+    public static List<Province> getAllProvince() {
         return DataSupport.findAll(Province.class);
+    }
+
+    public boolean findProvince(int iCode) {
+        List<Province> provinceList = DataSupport.where("icode = ?", "" + iCode).find(Province.class);
+        if (provinceList != null && provinceList.size() > 0) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -25,4 +25,9 @@ public class Province extends DataSupport{
     public void setsName(String sName) {
         this.sName = sName;
     }
+
+    @Override
+    public String toString() {
+        return sName;
+    }
 }
