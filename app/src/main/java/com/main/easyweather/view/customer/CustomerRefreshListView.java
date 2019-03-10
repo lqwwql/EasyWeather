@@ -178,7 +178,8 @@ public class CustomerRefreshListView extends ListView implements OnScrollListene
     }
 
     //完成刷新后重置headview
-    private void completeRefresh() {
+    public void completeRefresh() throws Exception {
+        Thread.sleep(1000);
         headerView.setPadding(0, -headerViewHeight, 0, 0);
         curRefreshState = PULL_REFRESH;
         pb_refreshing.setVisibility(View.INVISIBLE);

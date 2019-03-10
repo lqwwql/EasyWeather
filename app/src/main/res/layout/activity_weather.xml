@@ -22,6 +22,7 @@
         <ImageView
             android:id="@+id/iv_location"
             android:src="@drawable/location"
+            android:visibility="gone"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/tv_current_city"
             android:layout_width="19dp"

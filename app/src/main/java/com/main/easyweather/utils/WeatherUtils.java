@@ -1,5 +1,6 @@
 package com.main.easyweather.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -9,6 +10,7 @@ import com.main.easyweather.models.WeatherDayBean;
 import com.main.easyweather.models.WeatherDetailBean;
 import com.main.easyweather.models.WeatherHourBean;
 import com.main.easyweather.models.WeatherTipBean;
+import com.main.easyweather.view.WeatherActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class WeatherUtils {
 
-    private Context context;
+    private WeatherActivity weatherActivity;
 
     private WeatherUtils() {
     }
@@ -45,104 +47,11 @@ public class WeatherUtils {
         return LazyLoader.WEATHER_UTILS;
     }
 
-    public List<WeatherBean> getWeatherBean(String cityName) throws Exception {
+    public void getWeatherBean(String cityName,boolean isRefresh) throws Exception {
+
         final List<WeatherBean> weatherBeanList = new ArrayList<>();
-/*        HeWeather.getWeatherNow(context, cityName, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherNowBeanListener() {
-            @Override
-            public void onError(Throwable throwable) {
-                Log.i("weather", "getWeatherNow onError:", throwable);
-            }
-
-            @Override
-            public void onSuccess(List<Now> list) {
-                if (list != null && list.size() > 0) {
-                    Log.i("weather", "getWeatherNow: " + new Gson().toJson(list));
-                    WeatherDetailBean weatherDetailBean = new WeatherDetailBean();
-                    NowBase nowBase = list.get(0).getNow();
-                    weatherDetailBean.setTemp(nowBase.getTmp());
-                    weatherDetailBean.setCondCode(nowBase.getCond_code());
-                    weatherDetailBean.setCondTxt(nowBase.getCond_txt());
-                    weatherDetailBean.setWindDir(nowBase.getWind_dir());
-                    weatherDetailBean.setWindSc(nowBase.getWind_sc());
-                    detailWeatherBean.setWeatherDetailBean(weatherDetailBean);
-                    detailWeatherBean.setType(1);
-                }
-            }
-        });
-
-        HeWeather.getWeatherHourly(context, cityName, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherHourlyBeanListener() {
-            @Override
-            public void onError(Throwable throwable) {
-                Log.i("weather", "getWeatherHourly onError:", throwable);
-            }
-
-            @Override
-            public void onSuccess(List<Hourly> list) {
-                if (list != null && list.size() > 0) {
-                    Log.i("weather", "getWeatherHourly: " + new Gson().toJson(list));
-                    List<WeatherHourBean> weatherHourBeanList = new ArrayList<>();
-                    List<HourlyBase> hourlyBaseList = list.get(0).getHourly();
-                    for (HourlyBase hourlyBase : hourlyBaseList) {
-                        WeatherHourBean weatherHourBean = new WeatherHourBean();
-                        weatherHourBean.setHour(hourlyBase.getTime());
-                        weatherHourBean.setImage(hourlyBase.getCond_code());
-                        weatherHourBean.setPer(hourlyBase.getPop());
-                        weatherHourBean.setTemp(hourlyBase.getTmp());
-                        weatherHourBeanList.add(weatherHourBean);
-                    }
-                    hourWeatherBean.setWeatherHourBeanList(weatherHourBeanList);
-                    hourWeatherBean.setType(2);
-                }
-            }
-        });
-
-        HeWeather.getWeatherForecast(context, cityName, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherForecastBeanListener() {
-            @Override
-            public void onError(Throwable throwable) {
-                Log.i("weather", "getWeatherForecast onError:", throwable);
-            }
-
-            @Override
-            public void onSuccess(List<Forecast> list) {
-                if (list != null && list.size() > 0) {
-                    Log.i("weather", "getWeatherForecast: " + new Gson().toJson(list));
-                    List<WeatherDayBean> weatherDayBeanList = new ArrayList<>();
-                    List<ForecastBase> forecastBaseList = list.get(0).getDaily_forecast();
-                    Log.i("weather", "forecast size = " + forecastBaseList.size());
-                    for (ForecastBase forecastBase : forecastBaseList) {
-                        WeatherDayBean weatherDayBean = new WeatherDayBean();
-                        weatherDayBean.setDay(forecastBase.getDate());
-                        weatherDayBean.setImage(forecastBase.getCond_code_d());
-                        weatherDayBean.setTempMax(forecastBase.getTmp_max());
-                        weatherDayBean.setTempMin(forecastBase.getTmp_min());
-                        weatherDayBeanList.add(weatherDayBean);
-                    }
-                    dayWeatherBean.setWeatherDayBeanList(weatherDayBeanList);
-                    dayWeatherBean.setType(3);
-                }
-            }
-        });
-
-        HeWeather.getWeatherLifeStyle(context, cityName, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherLifeStyleBeanListener() {
-            @Override
-            public void onError(Throwable throwable) {
-                Log.i("weather", "getWeatherLifeStyle onError:", throwable);
-            }
-
-            @Override
-            public void onSuccess(List<Lifestyle> list) {
-                if (list != null && list.size() > 0) {
-                    Log.i("weather", "getWeatherLifeStyle: " + new Gson().toJson(list));
-                    WeatherTipBean weatherTipBean = new WeatherTipBean();
-                    List<LifestyleBase> lifestyleBaseList = list.get(0).getLifestyle();
-                    weatherTipBean.setTip(getLifeStyle(lifestyleBaseList));
-                    tipWeatherBean.setWeatherTipBean(weatherTipBean);
-                    tipWeatherBean.setType(4);
-                }
-            }
-        });*/
-
-        HeWeather.getWeather(context, cityName, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherDataListBeansListener() {
+        final boolean refresh = isRefresh;
+        HeWeather.getWeather(weatherActivity, cityName, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherDataListBeansListener() {
             @Override
             public void onError(Throwable throwable) {
                 Log.i("weather", "getWeather onError:", throwable);
@@ -151,6 +60,7 @@ public class WeatherUtils {
             @Override
             public void onSuccess(List<Weather> list) {
                 if (list != null && list.size() > 0) {
+                    Log.i("weather", "onSuccess: " + new Gson().toJson(list));
                     WeatherBean detailWeatherBean = new WeatherBean();
                     WeatherBean hourWeatherBean = new WeatherBean();
                     WeatherBean dayWeatherBean = new WeatherBean();
@@ -205,10 +115,11 @@ public class WeatherUtils {
                     weatherBeanList.add(hourWeatherBean);
                     weatherBeanList.add(dayWeatherBean);
                     weatherBeanList.add(tipWeatherBean);
+
+                    weatherActivity.refreshDataChange(weatherBeanList,refresh);
                 }
             }
         });
-        return weatherBeanList;
     }
 
     private String getLifeStyle(List<LifestyleBase> lifestyleBaseList, String type, int select) {
@@ -309,12 +220,13 @@ public class WeatherUtils {
         return comf + cw + drsg + flu + sport + trav + uv + air;
     }
 
-    public Context getContext() {
-        return context;
+
+    public WeatherActivity getWeatherActivity() {
+        return weatherActivity;
     }
 
-    public WeatherUtils setContext(Context context) {
-        this.context = context;
+    public WeatherUtils setWeatherActivity(WeatherActivity weatherActivity) {
+        this.weatherActivity = weatherActivity;
         return this;
     }
 }

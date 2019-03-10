@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.main.easyweather.R;
 import com.main.easyweather.listener.CityListViewItemClickListener;
+import com.main.easyweather.models.CacheCity;
 import com.main.easyweather.view.WeatherActivity;
 
 import java.util.List;
@@ -23,10 +24,10 @@ import java.util.List;
 public class CityListViewAdapter extends BaseAdapter {
 
     private Activity activity;
-    private List<String> cityList;
+    private List<CacheCity> cityList;
     private CityListViewItemClickListener cityListViewItemClickListener;
 
-    public CityListViewAdapter(Activity activity, List<String> cityList,CityListViewItemClickListener cityListViewItemClickListener){
+    public CityListViewAdapter(Activity activity, List<CacheCity> cityList,CityListViewItemClickListener cityListViewItemClickListener){
         this.activity = activity;
         this.cityList = cityList;
         this.cityListViewItemClickListener = cityListViewItemClickListener;
@@ -57,7 +58,7 @@ public class CityListViewAdapter extends BaseAdapter {
         }else{
             cityListViewHolder = (CityListViewHolder) convertView.getTag();
         }
-        cityListViewHolder.tv_city_name.setText(cityList.get(position));
+        cityListViewHolder.tv_city_name.setText(cityList.get(position).getCityName());
         cityListViewHolder.iv_remove_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +69,7 @@ public class CityListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity,WeatherActivity.class);
-                intent.putExtra("cityName",cityList.get(position));
+                intent.putExtra("cityName",cityList.get(position).getCityName());
                 activity.startActivity(intent);
                 activity.finish();
             }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="easyweather" ></dbname>
+
+    <version value="3" ></version>
+    <list>
+        <mapping class="com.main.easyweather.models.Province"></mapping>
+        <mapping class="com.main.easyweather.models.City"></mapping>
+        <mapping class="com.main.easyweather.models.CacheCity"></mapping>
+        <mapping class="com.main.easyweather.models.County"></mapping>
+    </list>
+</litepal>

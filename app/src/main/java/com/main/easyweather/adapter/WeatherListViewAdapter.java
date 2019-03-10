@@ -31,9 +31,8 @@ public class WeatherListViewAdapter extends BaseAdapter {
     private List<WeatherBean> weatherBeanList;
     private Context context;
 
-    public WeatherListViewAdapter(Context context, List<WeatherBean> weatherBeanList) {
+    public WeatherListViewAdapter(Context context) {
         this.context = context;
-        this.weatherBeanList = weatherBeanList;
     }
 
     @Override
@@ -69,6 +68,7 @@ public class WeatherListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.i("weather", "getView call");
         int type = getItemViewType(position);
         WeatherBean weatherBean = weatherBeanList.get(position);
         CurWeatherViewHolder curWeatherViewHolder;
@@ -76,7 +76,7 @@ public class WeatherListViewAdapter extends BaseAdapter {
         TipViewHolder tipViewHolder;
         switch (type) {
             case 1:
-                try{
+                try {
                     if (convertView == null) {
                         convertView = LayoutInflater.from(context).inflate(R.layout.lv_item_cur_weather, parent, false);
                         curWeatherViewHolder = new CurWeatherViewHolder(convertView);
@@ -85,20 +85,20 @@ public class WeatherListViewAdapter extends BaseAdapter {
                         curWeatherViewHolder = (CurWeatherViewHolder) convertView.getTag();
                     }
                     WeatherDetailBean weatherDetailBean = weatherBean.getWeatherDetailBean();
-                    if(weatherDetailBean==null){
+                    if (weatherDetailBean == null) {
                         Log.i("weather", "weatherDetailBean = null");
                         break;
                     }
                     curWeatherViewHolder.tv_cur_temp.setText(weatherDetailBean.getTemp() + "℃");
                     curWeatherViewHolder.tv_weather.setText(weatherDetailBean.getCondTxt());
-                    curWeatherViewHolder.tv_temp_range.setText(weatherDetailBean.getWindDir() + "/" + weatherDetailBean.getWindSc()+"级");
-                    curWeatherViewHolder.tv_air.setText("空气质量:"+weatherDetailBean.getAir());
+                    curWeatherViewHolder.tv_temp_range.setText(weatherDetailBean.getWindDir() + "/" + weatherDetailBean.getWindSc() + "级");
+                    curWeatherViewHolder.tv_air.setText("空气质量:" + weatherDetailBean.getAir());
                     break;
-                }catch(Exception e){
-                    Log.i("weather","type 1 error : ",e);
+                } catch (Exception e) {
+                    Log.i("weather", "type 1 error : ", e);
                 }
             case 2:
-                try{
+                try {
                     if (convertView == null) {
                         convertView = LayoutInflater.from(context).inflate(R.layout.lv_item_hour_weather, parent, false);
                         hourWeatherViewHolder = new HourWeatherViewHolder(convertView);
@@ -117,11 +117,11 @@ public class WeatherListViewAdapter extends BaseAdapter {
                     hourWeatherViewHolder.recyclerView.setLayoutManager(linearLayoutManager);
                     hourWeatherViewHolder.recyclerView.setAdapter(hourWeatherRecycleViewAdapter);
                     break;
-                }catch(Exception e){
-                    Log.i("weather","type 1 error : ",e);
+                } catch (Exception e) {
+                    Log.i("weather", "type 1 error : ", e);
                 }
             case 3:
-                try{
+                try {
                     List<WeatherDayBean> weatherDayBeanList = weatherBean.getWeatherDayBeanList();
                     LinearLayout total = new LinearLayout(context);
                     total.setOrientation(LinearLayout.VERTICAL);
@@ -129,15 +129,14 @@ public class WeatherListViewAdapter extends BaseAdapter {
                         Log.i("weather", "weatherDayBeanList = null");
                         break;
                     }
-                    Log.i("weather","weatherDayBeanList size = "+weatherDayBeanList.size());
                     for (WeatherDayBean weatherDayBean : weatherDayBeanList) {
                         View view = LayoutInflater.from(context).inflate(R.layout.lv_item_day_weather, parent, false);
                         TextView tv_date_day1 = view.findViewById(R.id.tv_date_day1);
                         ImageView iv_weather_day1 = view.findViewById(R.id.iv_weather_day1);
                         TextView tv_temp_day1 = view.findViewById(R.id.tv_temp_day1);
                         tv_date_day1.setText(weatherDayBean.getDay());
-                        tv_temp_day1.setText(weatherDayBean.getTempMax() + "℃/" + weatherDayBean.getTempMin()+"℃");
-                        int imageUrl = context.getResources().getIdentifier("w"+weatherDayBean.getImage(), "drawable", context.getPackageName());
+                        tv_temp_day1.setText(weatherDayBean.getTempMax() + "℃/" + weatherDayBean.getTempMin() + "℃");
+                        int imageUrl = context.getResources().getIdentifier("w" + weatherDayBean.getImage(), "drawable", context.getPackageName());
                         GlideUtils.getInstence().setImageCacheResource(imageUrl, context, iv_weather_day1);
                         total.addView(view);
                     }
@@ -147,7 +146,7 @@ public class WeatherListViewAdapter extends BaseAdapter {
                     Log.i("weather", "type 1 error : ", e);
                 }
             case 4:
-                try{
+                try {
                     if (convertView == null) {
                         convertView = LayoutInflater.from(context).inflate(R.layout.lv_item_cur_tip, parent, false);
                         tipViewHolder = new TipViewHolder(convertView);
@@ -156,19 +155,27 @@ public class WeatherListViewAdapter extends BaseAdapter {
                         tipViewHolder = (TipViewHolder) convertView.getTag();
                     }
                     WeatherTipBean weatherTipBean = weatherBean.getWeatherTipBean();
-                    if(weatherTipBean==null){
+                    if (weatherTipBean == null) {
                         Log.i("weather", "weatherTipBean = null");
                         break;
                     }
                     tipViewHolder.tv_cur_tip.setText(weatherTipBean.getTip());
                     break;
-                }catch(Exception e){
-                    Log.i("weather","type 4 error : ",e);
+                } catch (Exception e) {
+                    Log.i("weather", "type 4 error : ", e);
                 }
             default:
                 break;
         }
         return convertView;
+    }
+
+    public List<WeatherBean> getWeatherBeanList() {
+        return weatherBeanList;
+    }
+
+    public void setWeatherBeanList(List<WeatherBean> weatherBeanList) {
+        this.weatherBeanList = weatherBeanList;
     }
 
     class CurWeatherViewHolder {
