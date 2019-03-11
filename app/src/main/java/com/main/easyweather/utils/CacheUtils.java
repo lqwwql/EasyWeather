@@ -74,6 +74,7 @@ public class CacheUtils {
         }
         cacheCity.setCityName(cityName);
         cacheCity.setCityData(data);
+        cacheCity.setTime(UtilTools.getCurrentTime());
         cacheCity.save();
     }
 }

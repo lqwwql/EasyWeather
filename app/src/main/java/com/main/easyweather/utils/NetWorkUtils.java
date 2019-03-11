@@ -16,6 +16,13 @@ import java.io.InputStreamReader;
 
 public class NetWorkUtils {
 
+    public static boolean isNetWorkOk(Context context){
+        if((NetWorkUtils.isMobileConnected(context) || NetWorkUtils.isNetworkConnected(context) || NetWorkUtils.isWifiConnected(context)) && NetWorkUtils.ping()){
+            return true;
+        }
+        return false;
+    }
+
     public static boolean isNetworkConnected(Context context) {
         if (context != null) {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) context

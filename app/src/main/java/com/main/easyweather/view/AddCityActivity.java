@@ -79,10 +79,10 @@ public class AddCityActivity extends AppCompatActivity {
         sp_province.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (provincelists != null && provincelists.size() > 0 && position > 0) {
+                if (provincelists != null && provincelists.size() > 0) {
                     iProvCode = provincelists.get(position).getiCode();
                     result = provincelists.get(position).getsName();
-                    LogUtils.logInfo("select --> "+result);
+                    LogUtils.logInfo("select --> " + result);
                     initCity(iProvCode);
                 }
             }
@@ -98,7 +98,7 @@ public class AddCityActivity extends AppCompatActivity {
                 if (citylists != null && citylists.size() > 0) {
                     iCityCode = citylists.get(position).getiCode();
                     result = citylists.get(position).getsName();
-                    LogUtils.logInfo("select --> "+result);
+                    LogUtils.logInfo("select --> " + result);
                     initCounty(iCityCode, iProvCode);
                 }
             }
@@ -113,7 +113,7 @@ public class AddCityActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (countylists != null && countylists.size() > 0) {
                     result = countylists.get(position).getsName();
-                    LogUtils.logInfo("select --> "+result);
+                    LogUtils.logInfo("select --> " + result);
                 }
             }
 
@@ -157,7 +157,7 @@ public class AddCityActivity extends AppCompatActivity {
                     };
                     cityPCCAdapter.setDropDownViewResource(R.layout.down_style);
                     sp_city.setAdapter(cityPCCAdapter);
-                }else{
+                } else {
                     sp_city.setAdapter(null);
                 }
             }
@@ -178,7 +178,7 @@ public class AddCityActivity extends AppCompatActivity {
                     };
                     countyPCCAdapter.setDropDownViewResource(R.layout.down_style);
                     sp_county.setAdapter(countyPCCAdapter);
-                }else{
+                } else {
                     sp_county.setAdapter(null);
                 }
             }

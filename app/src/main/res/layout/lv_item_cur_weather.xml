@@ -1,58 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:paddingBottom="50dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingTop="50dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_cur_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="17℃"
+        android:textColor="#fff"
+        android:textSize="100sp" />
 
-        <TextView
-            android:id="@+id/tv_cur_temp"
-            android:textSize="100sp"
-            android:text="17℃"
-            android:textColor="#fff"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_cur_temp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="小雨"
+        android:textColor="#fff"
+        android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/tv_weather"
-            android:text="小雨"
-            android:textSize="25sp"
-            android:textColor="#fff"
-            android:layout_below="@id/tv_cur_temp"
-            android:layout_marginTop="25dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_temp_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_weather"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="18℃/13℃"
+        android:textColor="#fff"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_temp_range"
-            android:text="18℃/13℃"
-            android:textSize="16sp"
-            android:textColor="#fff"
-            android:layout_below="@id/tv_weather"
-            android:layout_marginTop="15dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_air"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_temp_range"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="空气优"
+        android:textColor="#fff"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_air"
-            android:text="空气优"
-            android:textSize="16sp"
-            android:textColor="#fff"
-            android:layout_below="@id/tv_temp_range"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_weather_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_air"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:text="天气来源:和风天气"
+        android:textColor="#fff"
+        android:textSize="10sp" />
 
-
-    </RelativeLayout>
-
-</LinearLayout>
+    <include
+        layout="@layout/divider_layout"
+        android:layout_below="@id/tv_weather_from"
+        android:layout_marginHorizontal="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp">
+    </include>
+</RelativeLayout>

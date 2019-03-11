@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="80dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
-    android:background="@color/colorETBG"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginVertical="20dp"
+    android:background="@drawable/radius_backgroup"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,48 +13,50 @@
 
         <TextView
             android:id="@+id/tv_hour"
-            android:textColor="#fff"
-            android:textSize="16sp"
-            android:text="12:00"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="12:00"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_per"
-            android:textColor="#fff"
-            android:textSize="13sp"
-            android:text="56%"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="56%"
+            android:textColor="#fff"
+            android:textSize="13sp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_hour_weather"
-            android:layout_centerInParent="true"
             android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_temp"
-            android:textColor="#fff"
-            android:textSize="16sp"
-            android:text="23℃"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="23℃"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </RelativeLayout>
-
 </LinearLayout>

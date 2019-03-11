@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorETBG"
+    android:orientation="vertical"
+    android:showDividers="end"
+    android:divider="@drawable/divider_shape"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
+
 
     <RelativeLayout
+        android:background="@color/colorBackgroup"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp">
-
         <TextView
             android:id="@+id/tv_date_day1"
             android:layout_width="wrap_content"
@@ -24,7 +27,7 @@
             android:id="@+id/iv_weather_day1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true" />
 
         <TextView
             android:id="@+id/tv_temp_day1"
@@ -36,7 +39,7 @@
             android:text="18℃/13℃"
             android:textColor="#fff"
             android:textSize="18sp" />
-
     </RelativeLayout>
+
 
 </LinearLayout>

@@ -20,6 +20,7 @@
 
         <ListView
             android:id="@+id/lv_citys"
+            android:divider="@drawable/divider_shape"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </ListView>
@@ -37,7 +38,7 @@
             <TextView
                 android:id="@+id/tv_addcity"
                 android:text="+添加城市"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="#fff"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"

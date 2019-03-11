@@ -22,7 +22,6 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView tv_addcity,tv_title;
     private ImageView iv_turnback;
     private ListView lv_citys;
-    private int RESULT_CODE = 1004;
     private CityListViewAdapter cityListViewAdapter;
 
     @Override
@@ -58,23 +57,18 @@ public class SettingsActivity extends AppCompatActivity {
         iv_turnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(SettingsActivity.this,WeatherActivity.class);
+                startActivity(intent);
+                SettingsActivity.this.finish();
             }
         });
 
         tv_addcity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(SettingsActivity.this, AddCityActivity.class), RESULT_CODE);
+                startActivity(new Intent(SettingsActivity.this, AddCityActivity.class));
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
     }
 
     private void notifyDataChanged() {

@@ -11,6 +11,15 @@ public class CacheCity extends DataSupport {
     private int id;
     private String cityName;
     private String cityData;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public int getId() {
         return id;

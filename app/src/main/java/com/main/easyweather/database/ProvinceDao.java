@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProvinceDao {
 
-    public static List<Province> getAllProvince() {
+    public List<Province> getAllProvince() {
         return DataSupport.findAll(Province.class);
     }
 

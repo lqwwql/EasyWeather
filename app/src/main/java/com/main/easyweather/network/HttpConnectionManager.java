@@ -35,10 +35,16 @@ public class HttpConnectionManager {
 
     private OkHttpClient mOkHttpClient;
     private Handler mHandler;
+    private ProvinceDao provinceDao;
+    private CityDao cityDao;
+    private CountyDao countyDao;
 
     private HttpConnectionManager() {
         mOkHttpClient = new OkHttpClient();
         mHandler = new Handler(Looper.getMainLooper());
+        provinceDao = new ProvinceDao();
+        cityDao = new CityDao();
+        countyDao = new CountyDao();
     }
 
     /**
@@ -55,6 +61,13 @@ public class HttpConnectionManager {
     public void getProvince(final String url, final GetProvinceCallBack callBack) {
         LogUtils.logInfo("getProvince");
         final Request request = new Request.Builder().url(url).build();
+
+        //从数据库加载
+        List<Province> provList = provinceDao.getAllProvince();
+        if(provList!=null&&provList.size()>0){
+            onGetProvince(1,provList,callBack);
+            return;
+        }
 
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -73,7 +86,7 @@ public class HttpConnectionManager {
                         Province province = new Province();
                         province.setiCode(jsonInfo.getId());
                         province.setsName(jsonInfo.getName());
-                        if (!new ProvinceDao().findProvince(jsonInfo.getId())) {
+                        if (!provinceDao.findProvince(jsonInfo.getId())) {
                             province.save();
                         }
                         provList.add(province);
@@ -88,6 +101,13 @@ public class HttpConnectionManager {
 
     public void getCity(final String url, final int iProvCode, final GetCityCallBack callBack) {
         final Request request = new Request.Builder().url(url + "/" + iProvCode).build();
+        //从数据库加载
+        List<City> cityList = cityDao.getCityByProvince(iProvCode);
+        if(cityList!=null&&cityList.size()>0){
+            onGetCity(1,cityList,callBack);
+            return;
+        }
+
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -105,7 +125,7 @@ public class HttpConnectionManager {
                         city.setiCode(jsonInfo.getId());
                         city.setsName(jsonInfo.getName());
                         city.setiProvCode(iProvCode);
-                        if (!new CityDao().findCity(jsonInfo.getId())) {
+                        if (!cityDao.findCity(jsonInfo.getId())) {
                             city.save();
                         }
                         cityList.add(city);
@@ -120,6 +140,13 @@ public class HttpConnectionManager {
 
     public void getCounty(final String url, final int iCityCode, final int iProvCode, final GetCountyCallBack callBack) {
         final Request request = new Request.Builder().url(url + "/" + iProvCode + "/" + iCityCode).build();
+        //从数据库加载
+        List<County> countyList = CountyDao.getCountyByCity(iCityCode);
+        if(countyList!=null&&countyList.size()>0){
+            onGetCounty(1,countyList,callBack);
+            return;
+        }
+
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -137,7 +164,7 @@ public class HttpConnectionManager {
                         county.setiCode(jsonInfo.getId());
                         county.setsName(jsonInfo.getName());
                         county.setiCity(iCityCode);
-                        if(new CountyDao().findCounty(jsonInfo.getId())){
+                        if(countyDao.findCounty(jsonInfo.getId())){
                             county.save();
                         }
                         countyList.add(county);

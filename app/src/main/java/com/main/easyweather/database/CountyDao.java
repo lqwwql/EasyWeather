@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CountyDao {
 
-    public static List<County> getCityByProvince(int cityCode){
+    public static List<County> getCountyByCity(int cityCode){
         return DataSupport.where("icity = ?",""+cityCode).find(County.class);
     }
 

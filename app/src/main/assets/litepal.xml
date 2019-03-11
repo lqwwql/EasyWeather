@@ -2,7 +2,7 @@
 <litepal>
     <dbname value="easyweather" ></dbname>
 
-    <version value="3" ></version>
+    <version value="4" ></version>
     <list>
         <mapping class="com.main.easyweather.models.Province"></mapping>
         <mapping class="com.main.easyweather.models.City"></mapping>

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="10dp"
+    android:background="@color/colorBackgroup"
     android:orientation="horizontal">
 
     <RelativeLayout
@@ -14,7 +15,7 @@
             android:id="@+id/tv_city_name"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="#fff"
             android:text="城市名"
             android:layout_centerVertical="true"
